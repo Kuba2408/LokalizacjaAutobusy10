@@ -1,0 +1,47 @@
+name: CI Pipeline
+
+# The workflow is triggered whenever code is pushed to the repository.
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the repository code.
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Step 2: Cache dependencies to avoid installing them each time.
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/backend/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      # Step 3: Install dependencies including the latest pip, pytest, and ruff.
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      # Step 4: Run Ruff for static code analysis.
+      - name: Run Ruff (static analysis)
+        run: |
+          ruff check .
+
+      # Step 5: Run unit tests using pytest.
+      - name: Run unit tests
+        run: |
+          pytest
+
+      # Step 6: Run coverage and ensure 90% test coverage.
+      - name: Check test coverage
+        run: |
+          coverage run -m pytest
+          coverage report --fail-under=90
