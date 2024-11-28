@@ -1,25 +1,15 @@
-import requests
+import folium
+from geopy.geocoders import Nominatim
+geolocator = Nominatim(user_agent="myGeocoder")
 
-def get_public_ip():
-    response = requests.get('https://ipinfo.io/ip')
-    return response.text.strip()
-
-def get_geolocation(ip_address):
-    url = f"https://ipinfo.io/{ip_address}/json"
-    response = requests.get(url)
-    if response.status_code == 200:
-        return response.json()
-    else:
-        return None
-
-ip = get_public_ip()
-location = get_geolocation(ip)
-
+adres = "Warszawa, Polska"
+location = geolocator.geocode(adres)
 if location:
-    print(f"IP: {location.get('ip')}")
-    print(f"Miasto: {location.get('city')}")
-    print(f"Region: {location.get('region')}")
-    print(f"Kraj: {location.get('country')}")
-    print(f"Lokalizacja: {location.get('loc')}")
+    print(f"Lokalizacja znaleziona: {location.address}")
+    print(f"Współrzędne: {location.latitude}, {location.longitude}")
+    mapa = folium.Map(location=[location.latitude, location.longitude], zoom_start=12)
+    folium.Marker([location.latitude, location.longitude], popup=location.address).add_to(mapa)
+    mapa.save("mapa_lokalizacji.html")
+    print("Mapa została zapisana jako mapa_lokalizacji.html")
 else:
-    print("Nie udało się uzyskać danych o lokalizacji.")
+    print("Nie znaleziono lokalizacji.")
