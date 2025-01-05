@@ -1,3 +1,5 @@
+#paste command to run tests python -m unittest discover -s tests
+
 import unittest
 from unittest.mock import patch, MagicMock
 from api_wrapper.api_receiver import ApiReceiver
