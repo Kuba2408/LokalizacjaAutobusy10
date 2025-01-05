@@ -126,19 +126,17 @@ class TestApiReceiver(unittest.TestCase):
         self.assertEqual(mock_ztm_instance.get_buses_location.call_count, 2)
     @patch("api_wrapper.api_receiver.warsaw_data_api.ztm")
     def test_bus_location_success(self, mock_ztm):
-        # Przygotowanie mocka dla obiektu ztm
+        # Mock preparation: same buses on multiple calls
         mock_ztm_instance = MagicMock()
         mock_ztm.return_value = mock_ztm_instance
-        mock_ztm_instance.get_buses_location.return_value = [{'bus_id': 1}, {'bus_id': 2}]  # Przykładowe dane
+        mock_ztm_instance.get_buses_location.return_value = [{'bus_id': 1}, {'bus_id': 2}]
         
-        # Stworzenie instancji ApiReceiver
         api_receiver = ApiReceiver('fake_apikey')
         
-        # Testowanie metody bus_location
         with self.assertLogs('api_wrapper.api_receiver', level='INFO') as log:  # Poprawienie loggera
             buses = api_receiver.bus_location()
 
-        # Sprawdzenie, czy funkcja zwróciła dane
+        # Assertions
         self.assertEqual(len(buses), 2)
         self.assertEqual(buses, [{'bus_id': 1}, {'bus_id': 2}])
 
@@ -147,7 +145,7 @@ class TestApiReceiver(unittest.TestCase):
 
     @patch("api_wrapper.api_receiver.warsaw_data_api.ztm")
     def test_bus_location_no_buses(self, mock_ztm):
-        # Przygotowanie mocka dla obiektu ztm
+        # Mock preparation: same buses on multiple calls
         mock_ztm_instance = MagicMock()
         mock_ztm.return_value = mock_ztm_instance
         mock_ztm_instance.get_buses_location.return_value = []  # Brak busów
@@ -159,29 +157,26 @@ class TestApiReceiver(unittest.TestCase):
         with self.assertLogs('api_wrapper.api_receiver', level='INFO') as log:  # Poprawienie loggera
             buses = api_receiver.bus_location()
 
-        # Sprawdzenie, czy funkcja zwróciła pustą listę
+        # Assertions
         self.assertEqual(len(buses), 0)
         self.assertEqual(buses, [])
 
-        # Sprawdzenie, czy logowanie miało miejsce (porównanie pełnej treści logu)
         self.assertIn('INFO:api_wrapper.api_receiver:Successfully retrieved bus locations: 0 buses found', log.output)
 
     @patch("api_wrapper.api_receiver.warsaw_data_api.ztm")
     def test_bus_location_failure(self, mock_ztm):
-        # Przygotowanie mocka dla obiektu ztm
+        # Mock preparation: same buses on multiple calls
         mock_ztm_instance = MagicMock()
         mock_ztm.return_value = mock_ztm_instance
         mock_ztm_instance.get_buses_location.side_effect = Exception('API error')  # Symulacja błędu
         
-        # Stworzenie instancji ApiReceiver
         api_receiver = ApiReceiver('fake_apikey')
         
-        # Testowanie, czy wyjątek jest rzucany i logowanie błędu
         with self.assertLogs('api_wrapper.api_receiver', level='ERROR') as log:  # Poprawienie loggera
             with self.assertRaises(Exception):  # Używamy assertRaises do przechwycenia wyjątku
                 api_receiver.bus_location()
 
-        # Sprawdzenie, czy logowanie błędu miało miejsce (porównanie pełnej treści logu)
+        # Assertions
         self.assertIn('ERROR:api_wrapper.api_receiver:Failed to fetch bus locations: API error', log.output)
 
 if __name__ == "__main__":
