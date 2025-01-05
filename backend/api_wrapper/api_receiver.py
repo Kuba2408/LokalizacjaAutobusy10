@@ -1,11 +1,25 @@
 import warsaw_data_api
+import logging
 
+# Setting up logging configuration
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 class ApiReceiver:
     def __init__(self, apikey):
         self.apikey = apikey
+        self.logger = logging.getLogger(__name__)  # Zainicjowanie loggera
 
     def bus_location(self):
-        ztm = warsaw_data_api.ztm(self.apikey)
-        buses = ztm.get_buses_location()
-        return buses
+        self.logger.info(f"Fetching bus locations using API key: {self.apikey}")  # Dodanie logowania na początku
+        try:
+            ztm = warsaw_data_api.ztm(self.apikey)
+            buses = ztm.get_buses_location()
+            if buses:
+                self.logger.info(f"Successfully retrieved bus locations: {len(buses)} buses found")
+            else:
+                self.logger.info(f"Successfully retrieved bus locations: 0 buses found")
+            return buses
+        except Exception as e:
+            self.logger.error(f"Failed to fetch bus locations: {str(e)}")
+            raise
