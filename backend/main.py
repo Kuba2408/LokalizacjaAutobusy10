@@ -7,7 +7,7 @@ from datetime import datetime, timedelta
 
 # Konfiguracja aplikacji i Redis
 app = FastAPI()
-redis_client = redis.StrictRedis(host='localhost', port=6379, decode_responses=True)
+redis_client = redis.Redis(host='redis', port=6379, decode_responses=True)
 ztm_API_key = "b4754db8-835f-4359-85a1-eae1229e54b9"
 ztm = warsaw_data_api.ztm(apikey=ztm_API_key)
 
