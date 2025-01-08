@@ -2,17 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-    --background: #ffffff;
-    --foreground: #000;
-}
-
-.dark {
-    --background: #1c1d1f;
-    --foreground: #fff;
-}
-
-body {
-    color: var(--foreground);
-    background: var(--background);
+#map {
+    height: 200px;
 }

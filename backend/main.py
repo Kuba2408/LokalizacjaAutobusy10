@@ -1,4 +1,5 @@
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 import redis.asyncio as redis
 import asyncio
 import warsaw_data_api
@@ -7,6 +8,21 @@ from datetime import datetime, timedelta
 
 # Konfiguracja aplikacji i Redis
 app = FastAPI()
+
+origins = [
+    "http://localhost:3000",
+    "http://localhost",
+    "http://localhost:8080",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 redis_client = redis.Redis(host='redis', port=6379, decode_responses=True)
 ztm_API_key = "b4754db8-835f-4359-85a1-eae1229e54b9"
 ztm = warsaw_data_api.ztm(apikey=ztm_API_key)

@@ -1,5 +1,5 @@
 # Użyj oficjalnego obrazu Node.js jako obrazu bazowego
-FROM node:16
+FROM node:22
 
 # Ustaw katalog roboczy w kontenerze
 WORKDIR /app
