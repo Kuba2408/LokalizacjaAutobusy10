@@ -1,0 +1,43 @@
+\doxysection{main.\+py File Reference}
+\hypertarget{main_8py}{}\label{main_8py}\index{main.py@{main.py}}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacemain}{main}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacemain_a097a4a5a449462b6baff383f94bd417b}{main.\+haversine}} (lat1, lon1, lat2, lon2)
+\item 
+\mbox{\hyperlink{namespacemain_aa34a0635f8f742c2fb9911d1405b1a50}{main.\+update\+\_\+bus\+\_\+location\+\_\+in\+\_\+background}} ()
+\item 
+\mbox{\hyperlink{namespacemain_a835ae097c78017008ff295695d4c62ee}{main.\+startup\+\_\+event}} ()
+\item 
+\mbox{\hyperlink{namespacemain_ab1563fd0207e4fa3cd5993cb004ca13b}{main.\+get\+\_\+locations\+\_\+line}} (str bus\+\_\+line)
+\item 
+\mbox{\hyperlink{namespacemain_a8ac5b0db4167742ed063538f3a21b773}{main.\+get\+\_\+location}} (str bus\+\_\+line, float user\+\_\+lat, float user\+\_\+lng, float user\+\_\+range)
+\item 
+\mbox{\hyperlink{namespacemain_a784199c561a19be4348d80742c63664a}{main.\+get\+\_\+all\+\_\+data}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{namespacemain_a26d76372c6b9fbf22406a1e7589490d1}{main.\+allow\+\_\+credentials}} = True
+\begin{DoxyCompactList}\small\item\em Określa, czy ciasteczka i dane uwierzytelniające mogą być wysyłane w odpowiedzi. \end{DoxyCompactList}\item 
+list \mbox{\hyperlink{namespacemain_a022f6efe0758119891ffc2b413524e81}{main.\+allow\+\_\+headers}} = \mbox{[}"{}\texorpdfstring{$\ast$}{*}"{}\mbox{]}
+\begin{DoxyCompactList}\small\item\em Określa, jakie nagłówki mogą być przesyłane w żądaniu. \end{DoxyCompactList}\item 
+list \mbox{\hyperlink{namespacemain_a18537af9849430ebe77d1e087f37980e}{main.\+allow\+\_\+methods}} = \mbox{[}"{}\texorpdfstring{$\ast$}{*}"{}\mbox{]}
+\begin{DoxyCompactList}\small\item\em Określa, które metody HTTP są dozwolone. \end{DoxyCompactList}\item 
+list \mbox{\hyperlink{namespacemain_a1a87be4adfaea1f69907e9011a4a1b7d}{main.\+allow\+\_\+origins}}
+\begin{DoxyCompactList}\small\item\em Określa, które domeny mogą uzyskać dostęp do aplikacji (CORS). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacemain_a5fa94f0581009434c7a63791944d6ff4}{main.\+app}} = Fast\+API()
+\begin{DoxyCompactList}\small\item\em Główna instancja aplikacji Fast\+API Tworzenie instancji aplikacji Fast\+API, która będzie obsługiwać żądania HTTP. \end{DoxyCompactList}\item 
+list \mbox{\hyperlink{namespacemain_ace1dcfeeab1080f5c4530f169022c6e4}{main.\+origins}}
+\begin{DoxyCompactList}\small\item\em Lista dozwolonych źródeł (domen), które mogą komunikować się z aplikacją przez CORS. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacemain_afbeaa01c09a026a9493131f5ffa49b2b}{main.\+redis\+\_\+client}} = redis.\+Redis(host=\textquotesingle{}redis\textquotesingle{}, port=6379, decode\+\_\+responses=True)
+\begin{DoxyCompactList}\small\item\em Połączenie z serwerem Redis w celu przechowywania danych aplikacji Redis jest używany do przechowywania informacji o lokalizacji autobusów. \end{DoxyCompactList}\item 
+str \mbox{\hyperlink{namespacemain_a951070250f3c08c63a5491ec9d5fe76d}{main.\+ztm\+\_\+\+API\+\_\+key}} = "{}b4754db8-\/835f-\/4359-\/85a1-\/eae1229e54b9"{}
+\begin{DoxyCompactList}\small\item\em Klucz API do ZTM, używany do autoryzacji przy pobieraniu danych o autobusach. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacemain_a2f7193a4b7fe78ccbed3ef5150ee7bf3}{main.\+ztm}} = warsaw\+\_\+data\+\_\+api.\+ztm(apikey=\mbox{\hyperlink{namespacemain_a951070250f3c08c63a5491ec9d5fe76d}{ztm\+\_\+\+API\+\_\+key}})
+\begin{DoxyCompactList}\small\item\em Instancja API ZTM do pobierania danych o warszawskich autobusach. \end{DoxyCompactList}\end{DoxyCompactItemize}

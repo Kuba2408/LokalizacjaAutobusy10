@@ -1,0 +1,231 @@
+\doxysection{main Namespace Reference}
+\hypertarget{namespacemain}{}\label{namespacemain}\index{main@{main}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacemain_a097a4a5a449462b6baff383f94bd417b}{haversine}} (lat1, lon1, lat2, lon2)
+\item 
+\mbox{\hyperlink{namespacemain_aa34a0635f8f742c2fb9911d1405b1a50}{update\+\_\+bus\+\_\+location\+\_\+in\+\_\+background}} ()
+\item 
+\mbox{\hyperlink{namespacemain_a835ae097c78017008ff295695d4c62ee}{startup\+\_\+event}} ()
+\item 
+\mbox{\hyperlink{namespacemain_ab1563fd0207e4fa3cd5993cb004ca13b}{get\+\_\+locations\+\_\+line}} (str bus\+\_\+line)
+\item 
+\mbox{\hyperlink{namespacemain_a8ac5b0db4167742ed063538f3a21b773}{get\+\_\+location}} (str bus\+\_\+line, float user\+\_\+lat, float user\+\_\+lng, float user\+\_\+range)
+\item 
+\mbox{\hyperlink{namespacemain_a784199c561a19be4348d80742c63664a}{get\+\_\+all\+\_\+data}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{namespacemain_a26d76372c6b9fbf22406a1e7589490d1}{allow\+\_\+credentials}} = True
+\begin{DoxyCompactList}\small\item\em Określa, czy ciasteczka i dane uwierzytelniające mogą być wysyłane w odpowiedzi. \end{DoxyCompactList}\item 
+list \mbox{\hyperlink{namespacemain_a022f6efe0758119891ffc2b413524e81}{allow\+\_\+headers}} = \mbox{[}"{}\texorpdfstring{$\ast$}{*}"{}\mbox{]}
+\begin{DoxyCompactList}\small\item\em Określa, jakie nagłówki mogą być przesyłane w żądaniu. \end{DoxyCompactList}\item 
+list \mbox{\hyperlink{namespacemain_a18537af9849430ebe77d1e087f37980e}{allow\+\_\+methods}} = \mbox{[}"{}\texorpdfstring{$\ast$}{*}"{}\mbox{]}
+\begin{DoxyCompactList}\small\item\em Określa, które metody HTTP są dozwolone. \end{DoxyCompactList}\item 
+list \mbox{\hyperlink{namespacemain_a1a87be4adfaea1f69907e9011a4a1b7d}{allow\+\_\+origins}}
+\begin{DoxyCompactList}\small\item\em Określa, które domeny mogą uzyskać dostęp do aplikacji (CORS). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacemain_a5fa94f0581009434c7a63791944d6ff4}{app}} = Fast\+API()
+\begin{DoxyCompactList}\small\item\em Główna instancja aplikacji Fast\+API Tworzenie instancji aplikacji Fast\+API, która będzie obsługiwać żądania HTTP. \end{DoxyCompactList}\item 
+list \mbox{\hyperlink{namespacemain_ace1dcfeeab1080f5c4530f169022c6e4}{origins}}
+\begin{DoxyCompactList}\small\item\em Lista dozwolonych źródeł (domen), które mogą komunikować się z aplikacją przez CORS. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacemain_afbeaa01c09a026a9493131f5ffa49b2b}{redis\+\_\+client}} = redis.\+Redis(host=\textquotesingle{}redis\textquotesingle{}, port=6379, decode\+\_\+responses=True)
+\begin{DoxyCompactList}\small\item\em Połączenie z serwerem Redis w celu przechowywania danych aplikacji Redis jest używany do przechowywania informacji o lokalizacji autobusów. \end{DoxyCompactList}\item 
+str \mbox{\hyperlink{namespacemain_a951070250f3c08c63a5491ec9d5fe76d}{ztm\+\_\+\+API\+\_\+key}} = "{}b4754db8-\/835f-\/4359-\/85a1-\/eae1229e54b9"{}
+\begin{DoxyCompactList}\small\item\em Klucz API do ZTM, używany do autoryzacji przy pobieraniu danych o autobusach. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacemain_a2f7193a4b7fe78ccbed3ef5150ee7bf3}{ztm}} = warsaw\+\_\+data\+\_\+api.\+ztm(apikey=\mbox{\hyperlink{namespacemain_a951070250f3c08c63a5491ec9d5fe76d}{ztm\+\_\+\+API\+\_\+key}})
+\begin{DoxyCompactList}\small\item\em Instancja API ZTM do pobierania danych o warszawskich autobusach. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacemain_a784199c561a19be4348d80742c63664a}\index{main@{main}!get\_all\_data@{get\_all\_data}}
+\index{get\_all\_data@{get\_all\_data}!main@{main}}
+\doxysubsubsection{\texorpdfstring{get\_all\_data()}{get\_all\_data()}}
+{\footnotesize\ttfamily \label{namespacemain_a784199c561a19be4348d80742c63664a} 
+main.\+get\+\_\+all\+\_\+data (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Endpoint do pobierania wszystkich danych z Redis.
+
+Pobiera wszystkie dane przechowywane w Redis, niezależnie od typu (string, hash, set).
+
+:return: JSON zawierający wszystkie dane z Redis.
+\end{DoxyVerb}
+ \Hypertarget{namespacemain_a8ac5b0db4167742ed063538f3a21b773}\index{main@{main}!get\_location@{get\_location}}
+\index{get\_location@{get\_location}!main@{main}}
+\doxysubsubsection{\texorpdfstring{get\_location()}{get\_location()}}
+{\footnotesize\ttfamily \label{namespacemain_a8ac5b0db4167742ed063538f3a21b773} 
+main.\+get\+\_\+location (\begin{DoxyParamCaption}\item[{str}]{bus\+\_\+line}{, }\item[{float}]{user\+\_\+lat}{, }\item[{float}]{user\+\_\+lng}{, }\item[{float }]{user\+\_\+range}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Endpoint do pobierania autobusów w zasięgu użytkownika.
+
+:param bus_line: Numer linii autobusowej.
+:param user_lat: Szerokość geograficzna użytkownika.
+:param user_lng: Długość geograficzna użytkownika.
+:param user_range: Zasięg w kilometrach.
+:return: JSON zawierający listę autobusów w zasięgu użytkownika.
+:raises HTTPException: Jeśli brak autobusów w zasięgu.
+\end{DoxyVerb}
+ \Hypertarget{namespacemain_ab1563fd0207e4fa3cd5993cb004ca13b}\index{main@{main}!get\_locations\_line@{get\_locations\_line}}
+\index{get\_locations\_line@{get\_locations\_line}!main@{main}}
+\doxysubsubsection{\texorpdfstring{get\_locations\_line()}{get\_locations\_line()}}
+{\footnotesize\ttfamily \label{namespacemain_ab1563fd0207e4fa3cd5993cb004ca13b} 
+main.\+get\+\_\+locations\+\_\+line (\begin{DoxyParamCaption}\item[{str}]{bus\+\_\+line}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Endpoint do pobierania wszystkich lokalizacji autobusów danej linii.
+
+:param bus_line: Numer linii autobusowej.
+:return: JSON zawierający listę autobusów i ich lokalizacje.
+:raises HTTPException: Jeśli linia autobusowa nie istnieje lub nie ma dostępnych autobusów.
+\end{DoxyVerb}
+ \Hypertarget{namespacemain_a097a4a5a449462b6baff383f94bd417b}\index{main@{main}!haversine@{haversine}}
+\index{haversine@{haversine}!main@{main}}
+\doxysubsubsection{\texorpdfstring{haversine()}{haversine()}}
+{\footnotesize\ttfamily \label{namespacemain_a097a4a5a449462b6baff383f94bd417b} 
+main.\+haversine (\begin{DoxyParamCaption}\item[{}]{lat1}{, }\item[{}]{lon1}{, }\item[{}]{lat2}{, }\item[{}]{lon2}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Funkcja pomocnicza do obliczania odległości na podstawie wzoru Haversine.
+
+Ta funkcja oblicza odległość w kilometrach pomiędzy dwoma punktami na powierzchni Ziemi,
+podając ich współrzędne geograficzne (szerokość i długość geograficzną).
+
+:param lat1: Szerokość geograficzna pierwszego punktu w stopniach.
+:param lon1: Długość geograficzna pierwszego punktu w stopniach.
+:param lat2: Szerokość geograficzna drugiego punktu w stopniach.
+:param lon2: Długość geograficzna drugiego punktu w stopniach.
+:return: Odległość pomiędzy dwoma punktami w kilometrach.
+\end{DoxyVerb}
+ \Hypertarget{namespacemain_a835ae097c78017008ff295695d4c62ee}\index{main@{main}!startup\_event@{startup\_event}}
+\index{startup\_event@{startup\_event}!main@{main}}
+\doxysubsubsection{\texorpdfstring{startup\_event()}{startup\_event()}}
+{\footnotesize\ttfamily \label{namespacemain_a835ae097c78017008ff295695d4c62ee} 
+main.\+startup\+\_\+event (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Funkcja uruchamiana podczas startu aplikacji.
+
+Funkcja ta uruchamia zadanie aktualizacji lokalizacji autobusów w tle.
+\end{DoxyVerb}
+ \Hypertarget{namespacemain_aa34a0635f8f742c2fb9911d1405b1a50}\index{main@{main}!update\_bus\_location\_in\_background@{update\_bus\_location\_in\_background}}
+\index{update\_bus\_location\_in\_background@{update\_bus\_location\_in\_background}!main@{main}}
+\doxysubsubsection{\texorpdfstring{update\_bus\_location\_in\_background()}{update\_bus\_location\_in\_background()}}
+{\footnotesize\ttfamily \label{namespacemain_aa34a0635f8f742c2fb9911d1405b1a50} 
+main.\+update\+\_\+bus\+\_\+location\+\_\+in\+\_\+background (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Funkcja asynchroniczna do aktualizacji lokalizacji autobusów w Redis.
+
+Funkcja ta pobiera dane o autobusach z API i zapisuje je w bazie danych Redis co 10 sekund.
+Każdy autobus jest zapisany w osobnym kluczu, a także dodawany do zestawu linii autobusowej.
+
+Funkcja działa w tle aplikacji i działa w nieskończonej pętli.
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespacemain_a26d76372c6b9fbf22406a1e7589490d1}\index{main@{main}!allow\_credentials@{allow\_credentials}}
+\index{allow\_credentials@{allow\_credentials}!main@{main}}
+\doxysubsubsection{\texorpdfstring{allow\_credentials}{allow\_credentials}}
+{\footnotesize\ttfamily \label{namespacemain_a26d76372c6b9fbf22406a1e7589490d1} 
+bool main.\+allow\+\_\+credentials = True}
+
+
+
+Określa, czy ciasteczka i dane uwierzytelniające mogą być wysyłane w odpowiedzi. 
+
+\Hypertarget{namespacemain_a022f6efe0758119891ffc2b413524e81}\index{main@{main}!allow\_headers@{allow\_headers}}
+\index{allow\_headers@{allow\_headers}!main@{main}}
+\doxysubsubsection{\texorpdfstring{allow\_headers}{allow\_headers}}
+{\footnotesize\ttfamily \label{namespacemain_a022f6efe0758119891ffc2b413524e81} 
+list main.\+allow\+\_\+headers = \mbox{[}"{}\texorpdfstring{$\ast$}{*}"{}\mbox{]}}
+
+
+
+Określa, jakie nagłówki mogą być przesyłane w żądaniu. 
+
+\Hypertarget{namespacemain_a18537af9849430ebe77d1e087f37980e}\index{main@{main}!allow\_methods@{allow\_methods}}
+\index{allow\_methods@{allow\_methods}!main@{main}}
+\doxysubsubsection{\texorpdfstring{allow\_methods}{allow\_methods}}
+{\footnotesize\ttfamily \label{namespacemain_a18537af9849430ebe77d1e087f37980e} 
+list main.\+allow\+\_\+methods = \mbox{[}"{}\texorpdfstring{$\ast$}{*}"{}\mbox{]}}
+
+
+
+Określa, które metody HTTP są dozwolone. 
+
+\Hypertarget{namespacemain_a1a87be4adfaea1f69907e9011a4a1b7d}\index{main@{main}!allow\_origins@{allow\_origins}}
+\index{allow\_origins@{allow\_origins}!main@{main}}
+\doxysubsubsection{\texorpdfstring{allow\_origins}{allow\_origins}}
+{\footnotesize\ttfamily \label{namespacemain_a1a87be4adfaea1f69907e9011a4a1b7d} 
+list main.\+allow\+\_\+origins}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ =\ \ [}
+\DoxyCodeLine{00002\ \ \ \ \ \textcolor{stringliteral}{"{}http://localhost:3000"{}},}
+\DoxyCodeLine{00003\ \ \ \ \ \textcolor{stringliteral}{"{}http://localhost"{}},}
+\DoxyCodeLine{00004\ \ \ \ \ \textcolor{stringliteral}{"{}http://localhost:8080"{}},}
+\DoxyCodeLine{00005\ ]}
+
+\end{DoxyCode}
+
+
+Określa, które domeny mogą uzyskać dostęp do aplikacji (CORS). 
+
+\Hypertarget{namespacemain_a5fa94f0581009434c7a63791944d6ff4}\index{main@{main}!app@{app}}
+\index{app@{app}!main@{main}}
+\doxysubsubsection{\texorpdfstring{app}{app}}
+{\footnotesize\ttfamily \label{namespacemain_a5fa94f0581009434c7a63791944d6ff4} 
+main.\+app = Fast\+API()}
+
+
+
+Główna instancja aplikacji Fast\+API Tworzenie instancji aplikacji Fast\+API, która będzie obsługiwać żądania HTTP. 
+
+\Hypertarget{namespacemain_ace1dcfeeab1080f5c4530f169022c6e4}\index{main@{main}!origins@{origins}}
+\index{origins@{origins}!main@{main}}
+\doxysubsubsection{\texorpdfstring{origins}{origins}}
+{\footnotesize\ttfamily \label{namespacemain_ace1dcfeeab1080f5c4530f169022c6e4} 
+list main.\+origins}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ =\ \ [}
+\DoxyCodeLine{00002\ \ \ \ \ \textcolor{stringliteral}{"{}http://localhost:3000"{}},}
+\DoxyCodeLine{00003\ \ \ \ \ \textcolor{stringliteral}{"{}http://localhost"{}},}
+\DoxyCodeLine{00004\ \ \ \ \ \textcolor{stringliteral}{"{}http://localhost:8080"{}},}
+\DoxyCodeLine{00005\ ]}
+
+\end{DoxyCode}
+
+
+Lista dozwolonych źródeł (domen), które mogą komunikować się z aplikacją przez CORS. 
+
+\Hypertarget{namespacemain_afbeaa01c09a026a9493131f5ffa49b2b}\index{main@{main}!redis\_client@{redis\_client}}
+\index{redis\_client@{redis\_client}!main@{main}}
+\doxysubsubsection{\texorpdfstring{redis\_client}{redis\_client}}
+{\footnotesize\ttfamily \label{namespacemain_afbeaa01c09a026a9493131f5ffa49b2b} 
+main.\+redis\+\_\+client = redis.\+Redis(host=\textquotesingle{}redis\textquotesingle{}, port=6379, decode\+\_\+responses=True)}
+
+
+
+Połączenie z serwerem Redis w celu przechowywania danych aplikacji Redis jest używany do przechowywania informacji o lokalizacji autobusów. 
+
+\Hypertarget{namespacemain_a2f7193a4b7fe78ccbed3ef5150ee7bf3}\index{main@{main}!ztm@{ztm}}
+\index{ztm@{ztm}!main@{main}}
+\doxysubsubsection{\texorpdfstring{ztm}{ztm}}
+{\footnotesize\ttfamily \label{namespacemain_a2f7193a4b7fe78ccbed3ef5150ee7bf3} 
+main.\+ztm = warsaw\+\_\+data\+\_\+api.\+ztm(apikey=\mbox{\hyperlink{namespacemain_a951070250f3c08c63a5491ec9d5fe76d}{ztm\+\_\+\+API\+\_\+key}})}
+
+
+
+Instancja API ZTM do pobierania danych o warszawskich autobusach. 
+
+\Hypertarget{namespacemain_a951070250f3c08c63a5491ec9d5fe76d}\index{main@{main}!ztm\_API\_key@{ztm\_API\_key}}
+\index{ztm\_API\_key@{ztm\_API\_key}!main@{main}}
+\doxysubsubsection{\texorpdfstring{ztm\_API\_key}{ztm\_API\_key}}
+{\footnotesize\ttfamily \label{namespacemain_a951070250f3c08c63a5491ec9d5fe76d} 
+str main.\+ztm\+\_\+\+API\+\_\+key = "{}b4754db8-\/835f-\/4359-\/85a1-\/eae1229e54b9"{}}
+
+
+
+Klucz API do ZTM, używany do autoryzacji przy pobieraniu danych o autobusach. 
+
