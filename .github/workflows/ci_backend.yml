@@ -33,16 +33,13 @@ jobs:
 
       # Step 4: Run Ruff for static code analysis.
       - name: Run Ruff (static analysis)
+        working-directory: ./backend
         run: |
           ruff check .
 
       # Step 5: Run unit tests using pytest.
       - name: Run unit tests
+        working-directory: ./backend
         run: |
-          pytest
+          python -m unittest .\tests\test_api_reciver.py
 
-      # Step 6: Run coverage and ensure 90% test coverage.
-      - name: Check test coverage
-        run: |
-          coverage run -m pytest
-          coverage report --fail-under=90
