@@ -19,18 +19,19 @@ services:
     networks:
       - app-network
 
-  frontend:
-    build: ./frontend
-    ports:
-      - "3000:3000"
-    environment:
-      - VITE_API_BASE_URL=http://backend:8080/api
-      - VITE_DEFAULT_LAT=52.237049
-      - VITE_DEFAULT_LNG=21.017532
-    depends_on:
-      - backend
-    networks:
-      - app-network
+### Nie działa :(
+  # frontend:
+  #   build: ./frontend
+  #   ports:
+  #     - "3000:3000"
+  #   environment:
+  #     - VITE_API_BASE_URL=http://backend:8080/api
+  #     - VITE_DEFAULT_LAT=52.237049
+  #     - VITE_DEFAULT_LNG=21.017532
+  #   depends_on:
+  #     - backend
+  #   networks:
+  #     - app-network
 
 networks:
   app-network:
